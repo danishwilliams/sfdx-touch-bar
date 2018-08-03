@@ -1,0 +1,78 @@
+{
+    "name": "sfdx-touch-bar",
+    "displayName": "SFDX Touch Bar",
+    "description": "SFDX commands for Touch Bar",
+    "version": "0.0.1",
+    "publisher": "Dane",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.sfdxPush",
+        "onCommand:extension.sfdxOrgList",
+        "onCommand:extension.sfdxPull",
+        "onCommand:extension.sfdxStatus"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sfdxPush",
+                "title": "Push"
+            },
+            {
+                "command": "extension.sfdxOrgList",
+                "title": "Orgs"
+            },
+            {
+                "command": "extension.sfdxPull",
+                "title": "Pull"
+            },
+            {
+                "command": "extension.sfdxStatus",
+                "title": "Status"
+            }
+        ],
+        "menus": {
+            "touchBar": [
+                {
+                    "when": "sfdx:project_opened",
+                    "command": "extension.sfdxPush",
+                    "group": "editing"
+                },
+                {
+                    "when": "sfdx:project_opened",
+                    "command": "extension.sfdxOrgList",
+                    "group": "editing"
+                },
+                {
+                    "when": "sfdx:project_opened",
+                    "command": "extension.sfdxPull",
+                    "group": "editing"
+                },
+                {
+                    "when": "sfdx:project_opened",
+                    "command": "extension.sfdxStatus",
+                    "group": "editing"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
